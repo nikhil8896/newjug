@@ -28,7 +28,20 @@
   <div>
     <h1>Redirect System is Working</h1>
     <p>If you are not redirected automatically, click here:</p>
-    <a href="/go">Go to Offer</a>
-  </div>
+    <a id="redirectLink" href="/go">Go to Offer</a>
+
+    <script>
+    // Assuming static.json is hosted at a known location or accessible via API
+    fetch('static.json')
+      .then(response => response.json())
+      .then(data => {
+        // Find the first redirect source and set its destination
+        const redirect = data.redirects.find(redirect => redirect.source === "/go");
+        if (redirect) {
+          document.getElementById('redirectLink').href = redirect.destination;
+        }
+      })
+      .catch(error => console.error('Error loading static.json:', error));
+  </script>
 </body>
 </html>
