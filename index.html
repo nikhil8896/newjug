@@ -30,20 +30,27 @@
     <p>If you are not redirected automatically, click here:</p>
     <a id="redirectLink" href="/go">Go to Offer</a>
 
-    <script>
-    // Assuming static.json is hosted at a known location or accessible via API
-    fetch('static.json')
-      .then(response => response.json())
-      .then(data => {
-        console.log("data", data);
-        // Find the first redirect source and set its destination
-        const redirect = data.redirects.find(redirect => redirect.source === "/go");
-        console.log("redirect", redirect);
-        if (redirect) {
-          document.getElementById('redirectLink').href = redirect.destination;
-        }
-      })
-      .catch(error => console.error('Error loading static.json:', error));
-  </script>
+     <script>
+      // Function to update the href with the correct destination URL
+      function updateRedirectLink() {
+        fetch('static.json')
+          .then(response => response.json())
+          .then(data => {
+            console.log("data", data);
+            
+            // Use regex to find the appropriate redirect for "/go"
+            const redirect = data.redirects.find(redirect => new RegExp(redirect.source).test("/go"));
+            console.log("redirect", redirect);
+            
+            if (redirect && redirect.destination) {
+              document.getElementById('redirectLink').href = redirect.destination;
+            }
+          })
+          .catch(error => console.error('Error loading static.json:', error));
+      }
+
+      // Run updateRedirectLink when the page loads
+      window.onload = updateRedirectLink;
+    </script>
 </body>
 </html>
