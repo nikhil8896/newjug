@@ -35,6 +35,7 @@
     fetch('static.json')
       .then(response => response.json())
       .then(data => {
+        console.log("data", data);
         // Find the first redirect source and set its destination
         const redirect = data.redirects.find(redirect => redirect.source === "/go");
         console.log("redirect", redirect);
