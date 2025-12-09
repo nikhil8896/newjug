@@ -36,12 +36,11 @@
         fetch('static.json')
           .then(response => response.json())
           .then(data => {
-            console.log("data", data);
+         
             
             // Use regex to find the appropriate redirect for "/go"
             const redirect = data.redirects.find(redirect => new RegExp(redirect.source).test("/go"));
-            console.log("redirect", redirect);
-            
+           
             if (redirect && redirect.destination) {
               document.getElementById('redirectLink').href = redirect.destination;
             }
