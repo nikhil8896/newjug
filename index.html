@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirect System Ready</title>
+  <title>Exclusive Access Ready</title>
   <style>
     body {
       background: #111;
@@ -17,39 +16,40 @@
       margin: 0;
       text-align: center;
     }
-    a {
-      color: #4db8ff;
-      font-size: 20px;
+    .box {
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .cta {
+      display: inline-block;
+      padding: 14px 30px;
+      font-size: 18px;
+      background: #4db8ff;
+      color: #111;
+      font-weight: bold;
+      border-radius: 8px;
       text-decoration: none;
+      transition: 0.2s;
+    }
+    .cta:hover {
+      background: #1a93d1;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Redirect System is Working</h1>
-    <p>If you are not redirected automatically, click here:</p>
-    <a id="redirectLink" href="/go">Go to Offer</a>
 
-     <script>
-      // Function to update the href with the correct destination URL
-      function updateRedirectLink() {
-        fetch('static.json')
-          .then(response => response.json())
-          .then(data => {
-         
-            
-            // Use regex to find the appropriate redirect for "/go"
-            const redirect = data.redirects.find(redirect => new RegExp(redirect.source).test("/go"));
-           
-            if (redirect && redirect.destination) {
-              document.getElementById('redirectLink').href = redirect.destination;
-            }
-          })
-          .catch(error => console.error('Error loading static.json:', error));
-      }
+  <div class="box">
+    <h1>Your Exclusive Recommendation Is Ready</h1>
+    <p>Click below to continue.</p>
+    <a href="/go" class="cta">Continue</a>
+  </div>
 
-      // Run updateRedirectLink when the page loads
-      window.onload = updateRedirectLink;
-    </script>
 </body>
 </html>
