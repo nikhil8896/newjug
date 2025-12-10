@@ -1,0 +1,4 @@
+# simple /go rule — keeps original query-string and appends UTM source
+/go  https://ferreroo.site/?utm_campaign=FrfzGsCeMp  302
+
+
